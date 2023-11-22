@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F44336">
+    android:background="">
 
     <TextView
         android:id="@+id/tituloPrincipal"
@@ -23,14 +23,13 @@
         android:layout_width="226dp"
         android:layout_height="87dp"
         android:layout_marginTop="10dp"
-        android:background="#8BC34A"
-        android:backgroundTint="#03A9F4"
+        android:background="#000000"
+        android:style=""
         android:text="INICIAR SESIÓN"
         android:textColor="#795548"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPrincipal"
-        app:rippleColor="#EC1A1A" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloPrincipal"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
