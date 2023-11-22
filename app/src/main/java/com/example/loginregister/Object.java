@@ -10,7 +10,6 @@ public class Object {
     public Object(int id, int rareza, String nombre, int precio, int daño) {
         this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
         this.rareza=rareza;
         this.precio = precio;
         this.daño=daño;

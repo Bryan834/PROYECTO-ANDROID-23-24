@@ -27,17 +27,17 @@ public class DetailTiendaActivity extends AppCompatActivity {
         //image = findViewById(R.id.image);
         btn_compra = findViewById(R.id.btn_comprar);
 
-        String idRecibido = getIntent().getExtras().getString("Id");
+        int idRecibido = getIntent().getExtras().getInt("Id");
         String nombreRecibido = getIntent().getExtras().getString("Nombre");
         String rarezaRecibida = getIntent().getExtras().getString("Rareza");
-        String dañoRecibido = getIntent().getExtras().getString("Daño");
+        int dañoRecibido = getIntent().getExtras().getInt("Daño");
         String precioRecibido = getIntent().getExtras().getString("Precio");
 
-        id.setText("Name : " + idRecibido);
-        nombre.setText("Description : " + nombreRecibido);
-        rareza.setText("Number of Objects : " + rarezaRecibida);
-        daño.setText("Price : " + dañoRecibido);
-        precio.setText("Damage : " + precioRecibido);
+        id.setText("Id : " + idRecibido);
+        nombre.setText("Nombre : " + nombreRecibido);
+        rareza.setText("Rareza : " + rarezaRecibida);
+        daño.setText("Daño : " + dañoRecibido);
+        precio.setText("Precio : " + precioRecibido);
 
         /*Picasso.with(getApplicationContext())
                 .load(imagereceived)

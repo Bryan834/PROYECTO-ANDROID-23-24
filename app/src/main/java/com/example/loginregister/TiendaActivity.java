@@ -83,7 +83,7 @@ public class TiendaActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            holder.id.setText("Id : " + list.get(position).getId());
+            holder.id.setText("    Id : " + list.get(position).getId());
             holder.nombre.setText("Nombre : " + list.get(position).getNombre());
             holder.rareza.setText("Rareza : " + String.valueOf(list.get(position).getRareza()));
             holder.daño.setText("Daño : " +String.valueOf(list.get(position).getDaño()));
