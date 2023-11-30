@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    TextInputEditText editTextEmail, editTextPassword, editTextUsername, editTextPasswordC;
+    TextInputEditText editTextEmail, editTextPassword, editTextUsername, editTextName, editTextLastname, editTextPasswordC;
 
     Button  button_register, button_return;
 
@@ -30,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         editTextPasswordC = findViewById(R.id.passwordC);
         editTextUsername  = findViewById(R.id.username);
+        editTextName = findViewById(R.id.name);
+        editTextLastname = findViewById(R.id.lastName);
         button_return = findViewById(R.id.btn_ret);
 
         button_return.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(editTextEmail.getText().toString()) || TextUtils.isEmpty(editTextPassword.getText().toString()) || TextUtils.isEmpty(editTextPasswordC.getText().toString()) || TextUtils.isEmpty(editTextUsername.getText().toString())){
+                if(TextUtils.isEmpty(editTextEmail.getText().toString()) || TextUtils.isEmpty(editTextPassword.getText().toString()) || TextUtils.isEmpty(editTextPasswordC.getText().toString()) || TextUtils.isEmpty(editTextUsername.getText().toString()) || TextUtils.isEmpty(editTextName.getText().toString()) || TextUtils.isEmpty(editTextLastname.getText().toString())){
                     String message = "All inputs are needed";
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                 }else if (! editTextPassword.getText().toString().equals(editTextPasswordC.getText().toString())){
@@ -51,11 +53,13 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                 }
                 else {
-                RegisterRequest registerRequest = new RegisterRequest();
-                registerRequest.setEmail(editTextEmail.getText().toString());
-                registerRequest.setPassword(editTextPassword.getText().toString());
-                registerRequest.setUsername(editTextUsername.getText().toString());
-                registerUser(registerRequest);}
+                    RegisterRequest registerRequest = new RegisterRequest();
+                    registerRequest.setEmail(editTextEmail.getText().toString());
+                    registerRequest.setPassword(editTextPassword.getText().toString());
+                    registerRequest.setUsername(editTextUsername.getText().toString());
+                    registerRequest.setName(editTextName.getText().toString());
+                    registerRequest.setLastName(editTextLastname.getText().toString());
+                    registerUser(registerRequest);}
             }
         });
 
@@ -63,18 +67,18 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUsers(registerRequest);
+        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(registerRequest);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                 if (response.isSuccessful()){
-                     String message = "Successful";
-                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
-                     startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                     finish();;
-                 } else {
+                if (response.isSuccessful()){
+                    String message = "Successful";
+                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                    finish();
+                } else {
                     String message = "An error occurred";
-                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                 }
             }
 

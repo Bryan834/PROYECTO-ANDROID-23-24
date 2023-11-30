@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-
     <Button
         android:id="@+id/btn_ret"
         android:layout_width="wrap_content"
@@ -24,7 +23,7 @@
         android:gravity="center">
     </TextView>
 
-
+    <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +37,7 @@
         android:minHeight="48dp">
     </com.google.android.material.textfield.TextInputEditText>
 
+    <!-- Username -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,6 +52,35 @@
         android:minHeight="48dp">
     </com.google.android.material.textfield.TextInputEditText>
 
+    <!-- Name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/name"
+        android:hint="@string/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp">
+    </com.google.android.material.textfield.TextInputEditText>
+
+    <!-- Last Name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/lastName"
+        android:hint="@string/last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp">
+    </com.google.android.material.textfield.TextInputEditText>
+
+    <!-- Password -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,6 +95,7 @@
         android:minHeight="48dp">
     </com.google.android.material.textfield.TextInputEditText>
 
+    <!-- Confirm Password -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,13 +110,12 @@
         android:minHeight="48dp">
     </com.google.android.material.textfield.TextInputEditText>
 
+    <!-- Register Button -->
     <Button
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:text="Register"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
     </Button>
-
-
 
 </LinearLayout>

@@ -11,11 +11,11 @@ import retrofit2.http.Path;
 
 public interface UserService {
 
-    @GET("users/{mail}&{password}")
-    Call<LoginResponse> loginUsers(@Path("mail") String mail, @Path("password") String password);
+    @POST("usuario/login")
+    Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
-    @POST("users/")
-    Call<RegisterResponse> registerUsers(@Body RegisterRequest registerRequest);
+    @POST("usuario/registrar")
+    Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
 
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();

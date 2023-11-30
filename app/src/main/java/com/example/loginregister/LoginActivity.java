@@ -36,7 +36,10 @@ public class LoginActivity extends AppCompatActivity {
                     String message = "All inputs are needed";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
                 }else {
-                    loginUsers(editTextEmail.getText().toString(),editTextPassword.getText().toString());
+                    LoginRequest loginRequest = new LoginRequest();
+                    loginRequest.setEmail(editTextEmail.getText().toString());
+                    loginRequest.setPassword(editTextPassword.getText().toString());
+                    loginUser(loginRequest);
                 }
             }
         });
@@ -51,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void loginUsers(String mail, String password){
-        Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUsers(mail, password);
+    public void loginUser(LoginRequest loginRequest){
+        Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
