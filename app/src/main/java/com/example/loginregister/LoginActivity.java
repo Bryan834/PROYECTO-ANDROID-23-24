@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
     Button button_login, button_register;
 
+    ProgressBar spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +30,17 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         button_login = findViewById(R.id.btn_login);
         button_register = findViewById(R.id.btn_register);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                spinner.setVisibility(View.VISIBLE);
                 if(TextUtils.isEmpty(editTextPassword.getText().toString()) || TextUtils.isEmpty(editTextEmail.getText().toString())){
                     String message = "All inputs are needed";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }else {
                     LoginRequest loginRequest = new LoginRequest();
                     loginRequest.setEmail(editTextEmail.getText().toString());
@@ -67,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                    spinner.setVisibility(View.GONE);
                 }
             }
 
@@ -74,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                spinner.setVisibility(View.GONE);
             }
         });
 
