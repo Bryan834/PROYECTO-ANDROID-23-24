@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -75,15 +76,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(registerRequest);
-        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+        Call<Void> registerResponseCall = ApiClient.getService().registerUser(registerRequest);
+        registerResponseCall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()){
                     String message = "Successful";
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                    finish();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
@@ -92,7 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.i("POLLO", "onFailure", t);
                 String message = t.getLocalizedMessage();
                 Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                 spinner.setVisibility(View.GONE);

@@ -15,7 +15,7 @@ public interface UserService {
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
     @POST("usuario/registrar")
-    Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
+    Call<Void> registerUser(@Body RegisterRequest registerRequest);
 
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
