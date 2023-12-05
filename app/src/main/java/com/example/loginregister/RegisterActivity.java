@@ -84,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                     String message = "Successful";
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();

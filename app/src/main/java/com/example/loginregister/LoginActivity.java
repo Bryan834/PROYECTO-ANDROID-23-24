@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                     String message = "Successful";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    finish();;
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
