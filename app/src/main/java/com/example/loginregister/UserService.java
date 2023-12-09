@@ -20,6 +20,6 @@ public interface UserService {
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
     @DELETE("deleteUser/{mail}/{password}")
-    Call<UsuarioResponse> deleteUser(@Path("mail") String mail, @Path("password") String password);
+    Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
 
 }
