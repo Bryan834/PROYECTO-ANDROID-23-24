@@ -1,6 +1,6 @@
 package com.example.loginregister;
 
-public class LoginResponse {
+public class UsuarioResponse {
 
     private String id;
     private String email;

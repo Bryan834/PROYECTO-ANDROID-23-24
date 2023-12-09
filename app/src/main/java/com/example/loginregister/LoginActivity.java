@@ -63,10 +63,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(LoginRequest loginRequest){
-        Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+        Call<UsuarioResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
+        loginResponseCall.enqueue(new Callback<UsuarioResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
                 if (response.isSuccessful()){
                     String message = "Successful";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<UsuarioResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
                 spinner.setVisibility(View.GONE);
