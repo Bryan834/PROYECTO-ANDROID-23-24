@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserService {
@@ -19,6 +20,9 @@ public interface UserService {
 
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
+
+    @PUT("tienda/comprarObjeto/{Mail}")
+    Call<Object> comprarObjeto(@Body Object object,@Path("Mail") String mail);
     @DELETE("deleteUser/{mail}/{password}")
     Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
 

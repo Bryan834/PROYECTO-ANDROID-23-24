@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +24,18 @@ import retrofit2.Response;
 public class TiendaActivity extends AppCompatActivity {
 
     RecyclerView recycle;
+    TextView dinero;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tienda);
         recycle = findViewById(R.id.recycle);
+        dinero = findViewById(R.id.dinero);
+
+        sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+        dinero.setText("Bolivares : " + sharedPreferences.getInt("bolivares",0));
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recycle.setLayoutManager(llm);
@@ -46,8 +54,8 @@ public class TiendaActivity extends AppCompatActivity {
                             Intent intent = new Intent(TiendaActivity.this, DetailTiendaActivity.class);
                             intent.putExtra("Id", objectList.get(recycle.getChildAdapterPosition(view)).getId());
                             intent.putExtra("Nombre", objectList.get(recycle.getChildAdapterPosition(view)).getNombre());
-                            intent.putExtra("Rareza", String.valueOf(objectList.get(recycle.getChildAdapterPosition(view)).getRareza()));
-                            intent.putExtra("Precio", String.valueOf(objectList.get(recycle.getChildAdapterPosition(view)).getPrecio()));
+                            intent.putExtra("Rareza", objectList.get(recycle.getChildAdapterPosition(view)).getRareza());
+                            intent.putExtra("Precio", objectList.get(recycle.getChildAdapterPosition(view)).getPrecio());
                             intent.putExtra("Daño", objectList.get(recycle.getChildAdapterPosition(view)).getDaño());
                             startActivity(intent);
                         }
@@ -76,7 +84,7 @@ public class TiendaActivity extends AppCompatActivity {
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout,null);
-            MyViewHolder viewHolder = new MyViewHolder(view);
+            recycleadapter.MyViewHolder viewHolder = new recycleadapter.MyViewHolder(view);
             view.setOnClickListener(this);
             return viewHolder;
         }
@@ -85,9 +93,9 @@ public class TiendaActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             holder.id.setText("    Id : " + list.get(position).getId());
             holder.nombre.setText("Nombre : " + list.get(position).getNombre());
-            holder.rareza.setText("Rareza : " + String.valueOf(list.get(position).getRareza()));
-            holder.daño.setText("Daño : " +String.valueOf(list.get(position).getDaño()));
-            holder.precio.setText("Precio : " + String.valueOf(list.get(position).getPrecio()));
+            holder.rareza.setText("Rareza : " + list.get(position).getRareza());
+            holder.daño.setText("Daño : " + list.get(position).getDaño());
+            holder.precio.setText("Precio : " + list.get(position).getPrecio());
 
 
 
