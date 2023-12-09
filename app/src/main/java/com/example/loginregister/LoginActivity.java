@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ProgressBar;
+import android.content.SharedPreferences;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,8 +21,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText editTextEmail, editTextPassword;
     Button button_login, button_register;
-
     ProgressBar spinner;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
 
+        sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     String message = "Successful";
                     Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("mail", loginRequest.getEmail());
+                    editor.putString("password",loginRequest.getPassword());
+                    editor.putString("username", response.body().getUsername());
+                    editor.putInt("bolivares",response.body().getBolivares());
+                    editor.commit();
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 } else {
                     String message = "An error occurred";

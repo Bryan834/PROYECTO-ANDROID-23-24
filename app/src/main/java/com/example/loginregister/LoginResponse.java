@@ -6,6 +6,7 @@ public class LoginResponse {
     private String email;
     private String username;
     private String password;
+    private int bolivares;
 
     public String getId() {
         return id;
@@ -37,6 +38,14 @@ public class LoginResponse {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getBolivares() {
+        return bolivares;
+    }
+
+    public void setBolivares(int bolivares) {
+        this.bolivares = bolivares;
     }
 }
 
