@@ -21,9 +21,10 @@ public interface UserService {
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
 
-    @PUT("tienda/comprarObjeto/{Mail}")
-    Call<Object> comprarObjeto(@Body Object object,@Path("Mail") String mail);
-    @DELETE("deleteUser/{mail}/{password}")
+    @PUT("tienda/comprarObjeto/{mail}")
+    Call<Object> comprarObjeto(@Body Object object,@Path("mail") String mail);
+
+    @DELETE("usuario/deleteUser/{mail}&{password}")
     Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
 
 }

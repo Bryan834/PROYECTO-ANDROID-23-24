@@ -87,7 +87,11 @@ public class PerfilActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String message = "Successful";
                     Toast.makeText(PerfilActivity.this, message, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.commit();
+                    startActivity(new Intent(PerfilActivity.this,SplashScreenActivity.class));
+                    finish();
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(PerfilActivity.this, message, Toast.LENGTH_LONG).show();
@@ -96,9 +100,9 @@ public class PerfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.i("POLLOP", "onFailure", t);
-                String message = t.getLocalizedMessage();
-                Toast.makeText(PerfilActivity.this,message,Toast.LENGTH_LONG).show();
+                String message = "Error: " + t.getMessage(); // Agrega esta línea para obtener más detalles
+                Log.e("Delete User", message); // Registra el mensaje de error en el log
+                Toast.makeText(PerfilActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
