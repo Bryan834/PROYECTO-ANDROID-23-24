@@ -19,11 +19,11 @@ import retrofit2.Response;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    TextView editUsername, editMail, editPassword;
+    TextView editUsername, editMail, editPassword, editName, editLastname;
 
     SharedPreferences sharedPreferences;
 
-    Button button_logout, button_delete;
+    Button button_logout, button_delete, button_update;
 
 
     @Override
@@ -31,16 +31,21 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         editUsername = findViewById(R.id.username);
+        editName = findViewById(R.id.name);
+        editLastname = findViewById(R.id.lastname);
         editMail = findViewById(R.id.mail);
         editPassword = findViewById(R.id.password);
         button_logout = findViewById(R.id.btn_LogOut);
         button_delete = findViewById(R.id.btn_borrar);
+        button_update = findViewById(R.id.btn_actualizar);
 
 
         sharedPreferences = getSharedPreferences("user_info",MODE_PRIVATE);
 
         editUsername.setText("Username : " + sharedPreferences.getString("username",null));
         editMail.setText("Mail : " + sharedPreferences.getString("mail",null));
+        editName.setText("Name : " + sharedPreferences.getString("name",null));
+        editLastname.setText("Lastname : " + sharedPreferences.getString("lastName",null));
         editPassword.setText("Password : " + sharedPreferences.getString("password",null));
 
         button_logout.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +55,14 @@ public class PerfilActivity extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 startActivity(new Intent(PerfilActivity.this,SplashScreenActivity.class));
+                finish();
+            }
+        });
+
+        button_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PerfilActivity.this,ActualizarPerfilActivity.class));
                 finish();
             }
         });

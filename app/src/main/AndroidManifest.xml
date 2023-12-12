@@ -19,6 +19,9 @@
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualizarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailTiendaActivity"
             android:exported="false" />
         <activity

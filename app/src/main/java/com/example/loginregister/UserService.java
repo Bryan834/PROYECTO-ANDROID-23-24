@@ -18,13 +18,18 @@ public interface UserService {
     @POST("usuario/registrar")
     Call<Void> registerUser(@Body RegisterRequest registerRequest);
 
+    @DELETE("usuario/deleteUser/{mail}&{password}")
+    Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
+
+    @POST("usuario/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}")
+    Call<UsuarioResponse> updateUser(@Path("mail") String mail, @Path("newPassword") String newPassword, @Path("newUsername") String newUsername, @Path("newName") String newName, @Path("newLastname") String newLastName, @Path("newMail") String newMail);
+
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
 
     @PUT("tienda/comprarObjeto/{mail}")
     Call<Object> comprarObjeto(@Body Object object,@Path("mail") String mail);
 
-    @DELETE("usuario/deleteUser/{mail}&{password}")
-    Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
+
 
 }

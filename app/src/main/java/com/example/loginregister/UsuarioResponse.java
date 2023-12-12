@@ -6,6 +6,8 @@ public class UsuarioResponse {
     private String email;
     private String username;
     private String password;
+    private String name;
+    private String lastName;
     private int bolivares;
 
     public String getId() {
@@ -22,6 +24,22 @@ public class UsuarioResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastname() {
+        return lastName;
+    }
+
+    public void setLastname(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
