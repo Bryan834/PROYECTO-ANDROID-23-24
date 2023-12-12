@@ -45,15 +45,23 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
         button_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newUsername = editTextUsername.getText().toString();
-                String newPassword = editTextPassword.getText().toString();
-                String newName = editTextName.getText().toString();
-                String newLastName = editTextLastname.getText().toString();
-                String newMail = editTextMail.getText().toString();
+                if(!TextUtils.isEmpty(editTextUsername.getText()) &&
+                        !TextUtils.isEmpty(editTextPassword.getText()) &&
+                        !TextUtils.isEmpty(editTextName.getText()) &&
+                        !TextUtils.isEmpty(editTextLastname.getText()) &&
+                        !TextUtils.isEmpty(editTextMail.getText())) {
+                    String newUsername = editTextUsername.getText().toString();
+                    String newPassword = editTextPassword.getText().toString();
+                    String newName = editTextName.getText().toString();
+                    String newLastName = editTextLastname.getText().toString();
+                    String newMail = editTextMail.getText().toString();
 
-                updateUser(mail, newUsername, newName, newLastName, newPassword, newMail);}
+                    updateUser(mail, newUsername, newName, newLastName, newPassword, newMail);
+                } else {
+                    Toast.makeText(ActualizarPerfilActivity.this, "Algunos elementos de la vista son nulos", Toast.LENGTH_LONG).show();
+                }
+            }
         });
-
 
     }
 

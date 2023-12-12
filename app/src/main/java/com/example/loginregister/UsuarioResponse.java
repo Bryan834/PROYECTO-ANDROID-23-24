@@ -3,7 +3,7 @@ package com.example.loginregister;
 public class UsuarioResponse {
 
     private String id;
-    private String email;
+    private String mail;
     private String username;
     private String password;
     private String name;
@@ -43,11 +43,11 @@ public class UsuarioResponse {
     }
 
     public String getEmail() {
-        return email;
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
