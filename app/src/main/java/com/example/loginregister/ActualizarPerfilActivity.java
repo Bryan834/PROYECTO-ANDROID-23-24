@@ -56,7 +56,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                     String newLastName = editTextLastname.getText().toString();
                     String newMail = editTextMail.getText().toString();
 
-                    updateUser(mail, newUsername, newName, newLastName, newPassword, newMail);
+                    updateUser(mail, newPassword, newUsername, newName, newLastName, newMail);
                 } else {
                     Toast.makeText(ActualizarPerfilActivity.this, "Algunos elementos de la vista son nulos", Toast.LENGTH_LONG).show();
                 }
@@ -65,8 +65,8 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
 
     }
 
-    public void updateUser(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail){
-        Call<UsuarioResponse> updateResponseCall = ApiClient.getService().updateUser(mail, newUsername, newName, newLastName, newPassword, newMail);
+    public void updateUser(String mail, String newPassword, String newUsername, String newName, String newLastName, String newMail){
+        Call<UsuarioResponse> updateResponseCall = ApiClient.getService().updateUser(mail, newPassword, newUsername, newName, newLastName, newMail);
         updateResponseCall.enqueue(new Callback<UsuarioResponse>() {
             @Override
             public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
@@ -101,7 +101,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                     }
 
 
-                    editor.commit();
+                    editor.apply();
 
                     startActivity(new Intent(ActualizarPerfilActivity.this, PerfilActivity.class));
                     finish();
