@@ -6,14 +6,15 @@ public class Object {
     String nombre;
     int precio;
     int daño;
+    String url;
 
-    public Object(int id, int rareza, String nombre, int precio, int daño) {
+    public Object(int id, int rareza, String nombre, int precio, int daño, String url) {
         this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
         this.rareza=rareza;
         this.precio = precio;
         this.daño=daño;
+        this.url=url;
     }
 
     public int getId() {
@@ -52,4 +53,11 @@ public class Object {
         this.daño = daño;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

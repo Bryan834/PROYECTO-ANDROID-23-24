@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Información del perfil"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"></TextView>
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"></TextView>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"></TextView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"></TextView>
+
+    <TextView
+        android:id="@+id/lastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"></TextView>
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"></TextView>
+
+    <Button
+        android:id="@+id/btn_actualizar"
+        android:layout_width="150dp"
+        android:layout_height="67dp"
+        android:text="Actualizar información"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btn_LogOut"
+        android:layout_width="130dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="10dp"
+        android:text="Cerrar sesión" />
+
+    <Button
+        android:id="@+id/btn_borrar"
+        android:layout_width="140dp"
+        android:layout_height="67dp"
+        android:backgroundTint="@color/red"
+        android:text="Eliminar cuenta" />
+
+</LinearLayout>

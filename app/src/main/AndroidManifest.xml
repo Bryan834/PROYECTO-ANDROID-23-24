@@ -16,12 +16,29 @@
         android:theme="@style/Theme.LoginRegister"
         tools:targetApi="31">
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailTiendaActivity"
             android:exported="false" />
         <activity
             android:name=".TiendaActivity"
             android:exported="false" />
+        <activity
+            android:name=".Ej1Minimo2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -30,12 +47,10 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
 
     </application>

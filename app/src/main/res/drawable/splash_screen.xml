@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Cuerpo del pato -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M 100 50 Q 150 50 150 100 Q 150 150 100 150 Q 50 150 50 100 Q 50 50 100 50 Z" />
+    <!-- Pico del pato -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M 150 100 Q 175 100 175 125 Q 175 150 150 150 Q 125 150 125 125 Q 125 100 150 100 Z" />
+    <!-- Ojo del pato -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 50 100 Q 25 100 25 75 Q 25 50 50 50 Q 75 50 75 75 Q 75 100 50 100 Z" />
+    <!-- Pupila del pato -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M 50 50 Q 40 40 30 50 Q 20 60 30 70 Q 40 80 50 70 Q 60 60 50 50 Z" />
+</vector>
