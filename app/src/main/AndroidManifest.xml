@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LoginRegister"
         tools:targetApi="31">
         <activity
+            android:name=".DetallePreguntasActivity"
+            android:exported="false" />
+        <activity
             android:name=".FAQsActivity"
             android:exported="false" />
         <activity
@@ -53,7 +56,7 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

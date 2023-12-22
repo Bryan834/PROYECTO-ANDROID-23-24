@@ -32,4 +32,7 @@ public interface UserService {
 
     @GET("faqs/preguntas")
     Call<List<PreguntasRespuestas>> getPreguntas();
+
+    @PUT("faqs/consultarPregunta/{pregunta}")
+    Call<PreguntasRespuestas> consultarPregunta(@Body PreguntasRespuestas preguntasRespuestas,@Path("Pregunta") String pregunta);
 }
