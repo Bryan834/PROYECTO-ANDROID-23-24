@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.BreakIterator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,23 +41,20 @@ public class FAQsActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recycler.setLayoutManager(llm);
 
-        Call<List<Object>> objectlistcall = ApiClient.getService().getObjects();
+        Call<List<PreguntasRespuestas>> preguntaslistcall = ApiClient.getService().getPreguntas();
 
-        objectlistcall.enqueue(new Callback<List<Object>>() {
-            public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {
+        preguntaslistcall.enqueue(new Callback<List<PreguntasRespuestas>>() {
+            public void onResponse(Call<List<PreguntasRespuestas>> call, Response<List<PreguntasRespuestas>> response) {
                 if (response.isSuccessful()) {
-                    List<Object> objectList = response.body();
-                    FAQsActivity.recycleradapter adapter = new FAQsActivity.recycleradapter(FAQsActivity.this,objectList);
+                    List<PreguntasRespuestas> preguntasRespuestasList = response.body();
+                    FAQsActivity.recycleradapter adapter = new FAQsActivity.recycleradapter(FAQsActivity.this,preguntasRespuestasList);
                     adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(getApplicationContext(), objectList.get(recycler.getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), preguntasRespuestasList.get(recycler.getChildAdapterPosition(view)).getPregunta(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(FAQsActivity.this, DetailTiendaActivity.class);
-                            intent.putExtra("Id", objectList.get(recycler.getChildAdapterPosition(view)).getId());
-                            intent.putExtra("Nombre", objectList.get(recycler.getChildAdapterPosition(view)).getNombre());
-                            intent.putExtra("Rareza", objectList.get(recycler.getChildAdapterPosition(view)).getRareza());
-                            intent.putExtra("Precio", objectList.get(recycler.getChildAdapterPosition(view)).getPrecio());
-                            intent.putExtra("Daño", objectList.get(recycler.getChildAdapterPosition(view)).getDaño());
+                            intent.putExtra("Pregunta", preguntasRespuestasList.get(recycler.getChildAdapterPosition(view)).getPregunta());
+                            intent.putExtra("Respuesta", preguntasRespuestasList.get(recycler.getChildAdapterPosition(view)).getRespuesta());
                             startActivity(intent);
                         }
                     });
@@ -64,22 +62,21 @@ public class FAQsActivity extends AppCompatActivity {
                 }
             }
 
-            public void onFailure(Call<List<Object>> call, Throwable t) {
+            public void onFailure(Call<List<PreguntasRespuestas>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
     class recycleradapter extends RecyclerView.Adapter<FAQsActivity.recycleradapter.MyViewHolder> implements View.OnClickListener{
-        List<Object> list;
+        List<PreguntasRespuestas> list;
         private Context contexto;
         private View.OnClickListener listener;
-        public recycleradapter(Context contexto, List<Object> list){
+        public recycleradapter(Context contexto, List<PreguntasRespuestas> list){
             this.contexto = contexto;
             this.list = list;
         }
 
-        @NonNull
         @Override
         public FAQsActivity.recycleradapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout,null);
@@ -90,20 +87,8 @@ public class FAQsActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        }
-
-        public void onBindViewHolder(@NonNull TiendaActivity.recycleadapter.MyViewHolder holder, int position) {
-            holder.id.setText("    Id : " + list.get(position).getId());
-            holder.nombre.setText("Nombre : " + list.get(position).getNombre());
-            holder.rareza.setText("Rareza : " + list.get(position).getRareza());
-            holder.daño.setText("Daño : " + list.get(position).getDaño());
-            holder.precio.setText("Precio : " + list.get(position).getPrecio());
-            Picasso.with(contexto)
-                    .load(list.get(position).getUrl())
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .fit()
-                    .into(holder.image);
+            holder.pregunta.setText("Pregunta: " + list.get(position).getPregunta());
+            holder.respuesta.setText("Respuesta: " + list.get(position).getRespuesta());
         }
 
         @Override
@@ -123,17 +108,13 @@ public class FAQsActivity extends AppCompatActivity {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder{
-            TextView id, nombre, rareza, precio, daño;
-            ImageView image;
+
+            TextView pregunta, respuesta;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                id = itemView.findViewById(R.id.id);
-                nombre = itemView.findViewById(R.id.nombre);
-                precio = itemView.findViewById(R.id.precio);
-                daño = itemView.findViewById(R.id.daño);
-                rareza = itemView.findViewById(R.id.rareza);
-                image = itemView.findViewById(R.id.image);
+                pregunta = itemView.findViewById(R.id.pregunta);
+                respuesta = itemView.findViewById(R.id.respuesta);
             }
         }
     }
