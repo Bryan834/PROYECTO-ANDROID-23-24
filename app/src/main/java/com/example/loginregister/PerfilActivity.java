@@ -46,7 +46,6 @@ public class PerfilActivity extends AppCompatActivity {
         editMail.setText("Mail : " + sharedPreferences.getString("mail",null));
         editName.setText("Name : " + sharedPreferences.getString("name",null));
         editLastname.setText("Lastname : " + sharedPreferences.getString("lastName",null));
-        editPassword.setText("Password : " + sharedPreferences.getString("password",null));
 
         button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
