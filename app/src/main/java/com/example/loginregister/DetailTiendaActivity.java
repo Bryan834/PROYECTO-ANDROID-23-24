@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ProgressBar;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
@@ -34,7 +32,7 @@ public class DetailTiendaActivity extends AppCompatActivity {
         daño = findViewById(R.id.Daño);
         precio = findViewById(R.id.Precio);
         //image = findViewById(R.id.image);
-        dinero = findViewById(R.id.dinero);
+        dinero = findViewById(R.id.titulo);
 
         btn_compra = findViewById(R.id.btn_comprar);
 

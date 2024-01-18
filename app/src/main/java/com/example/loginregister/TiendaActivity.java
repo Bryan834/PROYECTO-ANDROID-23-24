@@ -34,7 +34,7 @@ public class TiendaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tienda);
         recycle = findViewById(R.id.recycle);
-        dinero = findViewById(R.id.dinero);
+        dinero = findViewById(R.id.titulo);
 
         sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
         dinero.setText("Bolivares : " + sharedPreferences.getInt("bolivares",0));

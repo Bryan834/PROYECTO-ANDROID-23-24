@@ -35,4 +35,7 @@ public interface UserService {
 
     @GET("usuario/listar_insignias_usuario/insignias/{username}")
     Call<List<Insignia>> getInsignias(@Path("username")String username);
+
+    @GET("usuario/posts")
+    Call<List<Mensaje>> getMensajes();
 }
