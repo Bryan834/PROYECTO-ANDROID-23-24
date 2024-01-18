@@ -25,13 +25,13 @@
             android:name=".ActualizarPerfilActivity"
             android:exported="false" />
         <activity
+            android:name=".InsigniasActivityMinimo2"
+            android:exported="false" />
+        <activity
             android:name=".DetailTiendaActivity"
             android:exported="false" />
         <activity
             android:name=".TiendaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Ej1Minimo2Activity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"

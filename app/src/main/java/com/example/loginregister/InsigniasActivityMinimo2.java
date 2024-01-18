@@ -114,7 +114,7 @@ public class InsigniasActivityMinimo2 extends AppCompatActivity {
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 nombre = itemView.findViewById(R.id.nombre);
-                image = itemView.findViewById(R.id.avatar);
+                image = itemView.findViewById(R.id.image);
             }
         }
     }
