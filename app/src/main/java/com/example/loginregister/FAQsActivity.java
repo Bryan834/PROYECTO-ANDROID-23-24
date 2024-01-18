@@ -113,8 +113,8 @@ public class FAQsActivity extends AppCompatActivity {
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                pregunta = itemView.findViewById(R.id.pregunta);
-                respuesta = itemView.findViewById(R.id.respuesta);
+                //pregunta = itemView.findViewById(R.id.pregunta);
+                //respuesta = itemView.findViewById(R.id.respuesta);
             }
         }
     }

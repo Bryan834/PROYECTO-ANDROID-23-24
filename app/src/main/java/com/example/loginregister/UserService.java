@@ -32,4 +32,7 @@ public interface UserService {
 
     @GET("faqs/preguntas")
     Call<List<PreguntasRespuestas>> getPreguntas();
+
+    @GET("usuario/listar_insignias_usuario/insignias/{username}")
+    Call<List<Insignia>> getInsignias(@Path("username")String username);
 }
