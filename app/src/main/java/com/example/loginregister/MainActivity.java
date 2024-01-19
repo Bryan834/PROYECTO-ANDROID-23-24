@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button_Tienda, button_perfil, button_faqs, button_insignias, button_mensajes;
+    Button button_Tienda, button_perfil, button_faqs, button_insignias, button_mensajes, button_questions;
 
     TextView username;
     SharedPreferences sharedPreferences;
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button_questions = findViewById(R.id.btn_questions);
         button_Tienda = findViewById(R.id.btn_tienda);
         button_perfil = findViewById(R.id.btn_perfil);
         username = findViewById(R.id.username);
@@ -60,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Mensajes_Sistema_Activity_Minimo2.class));
+            }
+        });
+
+        button_questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, QuestionActivity.class));
             }
         });
     }

@@ -104,6 +104,18 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/btn_questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buzón de sugerencias" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
