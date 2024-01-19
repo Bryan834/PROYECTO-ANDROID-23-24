@@ -22,6 +22,9 @@
             android:name=".Mensajes_Sistema_Activity_Minimo2"
             android:exported="false" />
         <activity
+            android:name=".QuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity

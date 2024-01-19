@@ -59,6 +59,7 @@ public class QuestionActivity extends AppCompatActivity {
                     String message = "Successful";
                     Toast.makeText(QuestionActivity.this, message, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), QuestionActivity.class));
+                    finish();
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(QuestionActivity.this, message, Toast.LENGTH_LONG).show();

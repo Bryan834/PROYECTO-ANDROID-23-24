@@ -78,7 +78,7 @@ public class DetailTiendaActivity extends AppCompatActivity {
                     editor.commit();
 
                     startActivity(new Intent(DetailTiendaActivity.this,TiendaActivity.class));
-                    finish();;
+                    finish();
                 } else {
                     String message = "An error occurred";
                     Toast.makeText(DetailTiendaActivity.this,message,Toast.LENGTH_LONG).show();

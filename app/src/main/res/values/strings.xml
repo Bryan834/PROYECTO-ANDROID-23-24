@@ -9,6 +9,8 @@
     <string name="Welcome">Welcome</string>
     <string name="name">name</string>
     <string name="last_name">Last Name</string>
-
+    <string name="message_question">Tu mensaje de pregunta aquí</string>
+    <string name="title_question">Tu título de pregunta aquí</string>
+    <string name="Date">Fecha</string>
 
 </resources>
