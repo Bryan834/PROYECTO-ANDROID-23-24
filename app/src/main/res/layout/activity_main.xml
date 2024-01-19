@@ -83,6 +83,15 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_inventario"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Listar inventario"
+            tools:layout_editor_absoluteX="146dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <Button
             android:id="@+id/btn_listar_insignias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

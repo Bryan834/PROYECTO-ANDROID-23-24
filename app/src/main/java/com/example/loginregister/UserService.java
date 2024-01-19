@@ -29,6 +29,9 @@ public interface UserService {
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();
 
+    @GET("usuario/backpack/{mail}")
+    Call<List<Object>> getUserObjects(@Path("mail") String mail);
+
     @PUT("tienda/comprarObjeto/{mail}")
     Call<Object> comprarObjeto(@Body Object object,@Path("mail") String mail);
 

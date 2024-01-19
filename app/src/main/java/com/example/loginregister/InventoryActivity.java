@@ -1,7 +1,6 @@
 package com.example.loginregister;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,45 +22,35 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TiendaActivity extends AppCompatActivity {
+public class InventoryActivity extends AppCompatActivity {
 
     RecyclerView recycle;
-    TextView dinero;
+    TextView titulo;
     SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tienda);
+        setContentView(R.layout.activity_inventario);
         recycle = findViewById(R.id.recycle);
-        dinero = findViewById(R.id.titulo);
+        titulo = findViewById(R.id.titulo);
 
         sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
-        dinero.setText("Bolivares : " + sharedPreferences.getInt("bolivares",0));
+
+        String mail = sharedPreferences.getString("mail", null);
+
+        titulo.setText("Inventario de " + sharedPreferences.getString("username",null));
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recycle.setLayoutManager(llm);
 
-        Call<List<Object>> objectlistcall = ApiClient.getService().getObjects();
+        Call<List<Object>> objectlistcall = ApiClient.getService().getUserObjects(mail);
         objectlistcall.enqueue(new Callback<List<Object>>() {
             @Override
             public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {
                 if (response.isSuccessful()) {
                     List<Object> objectList = response.body();
-                    recycleadapter adapter = new recycleadapter(TiendaActivity.this,objectList);
-                    adapter.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(getApplicationContext(), objectList.get(recycle.getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(TiendaActivity.this, DetailTiendaActivity.class);
-                            intent.putExtra("Id", objectList.get(recycle.getChildAdapterPosition(view)).getId());
-                            intent.putExtra("Nombre", objectList.get(recycle.getChildAdapterPosition(view)).getNombre());
-                            intent.putExtra("Rareza", objectList.get(recycle.getChildAdapterPosition(view)).getRareza());
-                            intent.putExtra("Precio", objectList.get(recycle.getChildAdapterPosition(view)).getPrecio());
-                            intent.putExtra("Daño", objectList.get(recycle.getChildAdapterPosition(view)).getDamage());
-                            startActivity(intent);
-                        }
-                    });
+                    recycleadapter adapter = new recycleadapter(InventoryActivity.this,objectList);
                     recycle.setAdapter(adapter);
                 }
             }
@@ -119,8 +108,8 @@ public class TiendaActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (listener!=null){
-            listener.onClick(view);
-        }
+                listener.onClick(view);
+            }
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder{

@@ -5,15 +5,15 @@ public class Object {
     int rareza;
     String nombre;
     int precio;
-    int daño;
+    int damage;
     String url;
 
-    public Object(int id, int rareza, String nombre, int precio, int daño, String url) {
+    public Object(int id, int rareza, String nombre, int precio, int damage, String url) {
         this.id = id;
         this.nombre = nombre;
         this.rareza=rareza;
         this.precio = precio;
-        this.daño=daño;
+        this.damage=damage;
         this.url=url;
     }
 
@@ -45,12 +45,12 @@ public class Object {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    public int getDaño() {
-        return daño;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setDaño(int damage) {
-        this.daño = daño;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public String getUrl() {
