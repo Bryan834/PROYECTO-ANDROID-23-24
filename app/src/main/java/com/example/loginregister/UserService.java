@@ -15,7 +15,7 @@ public interface UserService {
     @POST("usuario/login")
     Call<UsuarioResponse> loginUser(@Body LoginRequest loginRequest);
 
-    @POST("usuario/registrar")
+    @POST("usuario/register")
     Call<Void> registerUser(@Body RegisterRequest registerRequest);
 
     @DELETE("usuario/deleteUser/{mail}&{password}")
