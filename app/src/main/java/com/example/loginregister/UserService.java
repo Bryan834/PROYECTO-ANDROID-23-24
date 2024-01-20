@@ -23,8 +23,8 @@ public interface UserService {
     @DELETE("usuario/deleteUser/{mail}&{password}")
     Call<Void> deleteUser(@Path("mail") String mail, @Path("password") String password);
 
-    @PUT("usuario/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}")
-    Call<UsuarioResponse> updateUser(@Path("mail") String mail, @Path("newPassword") String newPassword, @Path("newUsername") String newUsername, @Path("newName") String newName, @Path("newLastName") String newLastName, @Path("newMail") String newMail);
+    @PUT("usuario/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}/{newBolivares}")
+    Call<UsuarioResponse> updateUser(@Path("mail") String mail, @Path("newPassword") String newPassword, @Path("newUsername") String newUsername, @Path("newName") String newName, @Path("newLastName") String newLastName, @Path("newMail") String newMail, @Path("newBolivares") int newBolivares);
 
     @GET("tienda/objetos")
     Call<List<Object>> getObjects();

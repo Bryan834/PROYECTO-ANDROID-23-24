@@ -86,6 +86,21 @@
         android:minHeight="48dp">
     </com.google.android.material.textfield.TextInputEditText>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Nuevo TextInputEditText para Bolívares -->
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bolivares"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Bolívares"
+        android:minHeight="48dp">
+    </com.google.android.material.textfield.TextInputEditText>
+
     <Button
         android:id="@+id/btn_save"
         android:layout_width="150dp"

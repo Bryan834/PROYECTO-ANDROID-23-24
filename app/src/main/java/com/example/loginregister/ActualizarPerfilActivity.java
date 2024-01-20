@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class ActualizarPerfilActivity extends AppCompatActivity {
 
-    TextInputEditText editTextUsername, editTextPassword, editTextName, editTextLastname, editTextMail;
+    TextInputEditText editTextUsername, editTextPassword, editTextName, editTextLastname, editTextMail, editBolivares;
     Button button_save;
     SharedPreferences sharedPreferences;
 
@@ -34,6 +34,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.name);
         editTextLastname = findViewById(R.id.lastname);
         editTextMail = findViewById(R.id.mail);
+        editBolivares = findViewById(R.id.bolivares);
         button_save = findViewById(R.id.btn_save);
 
 
@@ -49,14 +50,24 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                         !TextUtils.isEmpty(editTextPassword.getText()) &&
                         !TextUtils.isEmpty(editTextName.getText()) &&
                         !TextUtils.isEmpty(editTextLastname.getText()) &&
-                        !TextUtils.isEmpty(editTextMail.getText())) {
+                        !TextUtils.isEmpty(editTextMail.getText()) &&
+                        !TextUtils.isEmpty(editBolivares.getText())) {
                     String newUsername = editTextUsername.getText().toString();
                     String newPassword = editTextPassword.getText().toString();
                     String newName = editTextName.getText().toString();
                     String newLastName = editTextLastname.getText().toString();
                     String newMail = editTextMail.getText().toString();
+                    int newBolivares;
+                    try {
+                        newBolivares = Integer.parseInt(editBolivares.getText().toString());
+                    } catch (NumberFormatException e) {
+                        // Handle the case where the input is not a valid integer
+                        // You might want to show an error message or provide a default value
+                        Toast.makeText(ActualizarPerfilActivity.this, "Invalid Bolívares value", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                    updateUser(mail, newPassword, newUsername, newName, newLastName, newMail);
+                    updateUser(mail, newPassword, newUsername, newName, newLastName, newMail, newBolivares);
                 } else {
                     Toast.makeText(ActualizarPerfilActivity.this, "Algunos elementos de la vista son nulos", Toast.LENGTH_LONG).show();
                 }
@@ -65,8 +76,8 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
 
     }
 
-    public void updateUser(String mail, String newPassword, String newUsername, String newName, String newLastName, String newMail){
-        Call<UsuarioResponse> updateResponseCall = ApiClient.getService().updateUser(mail, newPassword, newUsername, newName, newLastName, newMail);
+    public void updateUser(String mail, String newPassword, String newUsername, String newName, String newLastName, String newMail, int newBolivares){
+        Call<UsuarioResponse> updateResponseCall = ApiClient.getService().updateUser(mail, newPassword, newUsername, newName, newLastName, newMail, newBolivares);
         updateResponseCall.enqueue(new Callback<UsuarioResponse>() {
             @Override
             public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
@@ -99,6 +110,10 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                     if (!TextUtils.isEmpty(response.body().getLastname())) {
                         editor.putString("lastName", response.body().getLastname());
                     }
+
+
+                        editor.putInt("bolivares", response.body().getBolivares());
+
 
 
                     editor.apply();
