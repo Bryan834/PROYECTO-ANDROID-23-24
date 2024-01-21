@@ -1,5 +1,7 @@
 package com.example.loginregister;
 
+import android.content.ComponentName;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,13 +10,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button_Tienda, button_perfil, button_faqs, button_insignias, button_mensajes, button_questions, button_inventory;
+    Button button_Tienda, button_perfil, button_faqs, button_insignias, button_mensajes, button_questions, button_inventory, button_unity;
 
     TextView username;
     SharedPreferences sharedPreferences;
+    String data;
+    boolean respuesta = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         button_insignias = findViewById(R.id.btn_listar_insignias);
         button_mensajes = findViewById(R.id.btn_mensajes_sistema);
         button_inventory = findViewById(R.id.btn_inventario);
+        button_unity = findViewById(R.id.btn_unity);
 
         sharedPreferences = getSharedPreferences("user_info",MODE_PRIVATE);
         username.setText(sharedPreferences.getString("username",null));
@@ -76,6 +85,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, InventoryActivity.class));
+            }
+        });
+        button_unity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                getMapa(1);
+
+                i.setComponent(new ComponentName("com.pollopeta.UnityPlugin", "com.unity3d.player.UnityPlayerActivity"));
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        i.putExtra("input", data);
+                        startActivity(i);
+                    }
+                }, 3000);
+            }
+        });
+    }
+    public void getMapa(int idMapa) {
+        Call<MapaResponse> mapaResponseCall = ApiClient.getService().getMapa(idMapa);
+        mapaResponseCall.enqueue(new Callback<MapaResponse>() {
+            @Override
+            public void onResponse(Call<MapaResponse> call, Response<MapaResponse> response) {
+                if (response.isSuccessful()) {
+                    String message = "Successful";
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                    data = response.body().getMapaF();
+                    respuesta = true;
+                } else {
+                    String message = "An error occurred";
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<MapaResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }

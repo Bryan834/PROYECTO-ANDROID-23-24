@@ -123,6 +123,17 @@
             android:text="Boton de sugerencias"
             tools:layout_editor_absoluteX="146dp"
             tools:layout_editor_absoluteY="165dp" />
+
+    <Button
+            android:id="@+id/btn_unity"
+            android:layout_width="161dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Iniciar juego"
+            tools:layout_editor_absoluteX="146dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

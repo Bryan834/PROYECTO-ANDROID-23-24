@@ -43,4 +43,7 @@ public interface UserService {
 
     @GET("usuario/posts")
     Call<List<Mensaje>> getMensajes();
+
+    @GET("usuario/mapas/{idMapa}")
+    Call<MapaResponse> getMapa(@Path("idMapa")int idMapa);
 }
