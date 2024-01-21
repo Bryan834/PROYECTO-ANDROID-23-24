@@ -48,7 +48,7 @@ public class TiendaActivity extends AppCompatActivity {
             public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {
                 if (response.isSuccessful()) {
                     List<Object> objectList = response.body();
-                    recycleadapter adapter = new recycleadapter(TiendaActivity.this,objectList);
+                    recycleadapter adapter = new recycleadapter(TiendaActivity.this, objectList);
                     adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -59,6 +59,7 @@ public class TiendaActivity extends AppCompatActivity {
                             intent.putExtra("Rareza", objectList.get(recycle.getChildAdapterPosition(view)).getRareza());
                             intent.putExtra("Precio", objectList.get(recycle.getChildAdapterPosition(view)).getPrecio());
                             intent.putExtra("Daño", objectList.get(recycle.getChildAdapterPosition(view)).getDamage());
+                            intent.putExtra("Url", objectList.get(recycle.getChildAdapterPosition(view)).getUrl()); // Agregado
                             startActivity(intent);
                         }
                     });
@@ -71,15 +72,14 @@ public class TiendaActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
-
-    class recycleadapter extends RecyclerView.Adapter<recycleadapter.MyViewHolder> implements View.OnClickListener{
+    class recycleadapter extends RecyclerView.Adapter<recycleadapter.MyViewHolder> implements View.OnClickListener {
         List<Object> list;
         private Context contexto;
         private View.OnClickListener listener;
-        public recycleadapter(Context contexto, List<Object> list){
+
+        public recycleadapter(Context contexto, List<Object> list) {
             this.contexto = contexto;
             this.list = list;
         }
@@ -87,7 +87,7 @@ public class TiendaActivity extends AppCompatActivity {
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout,null);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, null);
             recycleadapter.MyViewHolder viewHolder = new recycleadapter.MyViewHolder(view);
             view.setOnClickListener(this);
             return viewHolder;
@@ -112,18 +112,18 @@ public class TiendaActivity extends AppCompatActivity {
             return list.size();
         }
 
-        public void setOnClickListener(View.OnClickListener listener){
-            this.listener=listener;
+        public void setOnClickListener(View.OnClickListener listener) {
+            this.listener = listener;
         }
 
         @Override
         public void onClick(View view) {
-            if (listener!=null){
-            listener.onClick(view);
-        }
+            if (listener != null) {
+                listener.onClick(view);
+            }
         }
 
-        class MyViewHolder extends RecyclerView.ViewHolder{
+        class MyViewHolder extends RecyclerView.ViewHolder {
             TextView id, nombre, rareza, precio, danyo;
             ImageView image;
 
@@ -138,5 +138,4 @@ public class TiendaActivity extends AppCompatActivity {
             }
         }
     }
-
 }

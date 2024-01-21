@@ -1,14 +1,24 @@
 package com.example.loginregister;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 import android.widget.Toast;
+import android.widget.ImageView;
+import android.content.SharedPreferences;
+import com.squareup.picasso.Picasso;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,6 +29,8 @@ public class DetailTiendaActivity extends AppCompatActivity {
     TextView id, nombre, rareza, daño, precio;
 
     TextView dinero;
+
+    ImageView image;
     SharedPreferences sharedPreferences;
     Button btn_compra;
 
@@ -26,14 +38,16 @@ public class DetailTiendaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tienda);
+
+        sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+
         id = findViewById(R.id.Id);
         nombre = findViewById(R.id.Nombre);
         rareza = findViewById(R.id.Rareza);
         daño = findViewById(R.id.Daño);
         precio = findViewById(R.id.Precio);
-        //image = findViewById(R.id.image);
+        image = findViewById(R.id.image); // Agregado
         dinero = findViewById(R.id.titulo);
-
         btn_compra = findViewById(R.id.btn_comprar);
 
         int idRecibido = getIntent().getExtras().getInt("Id");
@@ -41,18 +55,19 @@ public class DetailTiendaActivity extends AppCompatActivity {
         int rarezaRecibida = getIntent().getExtras().getInt("Rareza");
         int dañoRecibido = getIntent().getExtras().getInt("Daño");
         int precioRecibido = getIntent().getExtras().getInt("Precio");
+        String urlRecibida = getIntent().getExtras().getString("Url"); // Agregado
 
         id.setText("Id : " + idRecibido);
         nombre.setText("Nombre : " + nombreRecibido);
         rareza.setText("Rareza : " + rarezaRecibida);
         daño.setText("Daño : " + dañoRecibido);
         precio.setText("Precio : " + precioRecibido);
-        sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
-        dinero.setText("bolivares :" + sharedPreferences.getInt("bolivares",0));
+        dinero.setText("bolivares :" + sharedPreferences.getInt("bolivares", 0));
 
-        /*Picasso.with(getApplicationContext())
-                .load(imagereceived)
-                .into(image);*/
+        // Cargar imagen utilizando Picasso (descomenta esta sección)
+        Picasso.with(getApplicationContext())
+                .load(urlRecibida)
+                .into(image);
 
         btn_compra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +77,7 @@ public class DetailTiendaActivity extends AppCompatActivity {
             }
         });
 
-}
+    }
 
     public void comprarObjeto(Object object,String mail){
         Call<Object> BuyResponseCall = ApiClient.getService().comprarObjeto(object,mail);
